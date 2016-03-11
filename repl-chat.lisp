@@ -4,7 +4,8 @@
 ;;;; Kamil <ziemniakzkosmosu@gmail.com> https://github.com/KZiemian
 ;;;; karhu <karhu@protonmail.com>       https://github.com/lweon
 ;;;; phoe  <phoe@openmailbox.org>       https://github.com/phoe-krk
-;;;; 
+;;;;
+;;;; (kraklisp) 2016
 
 (defun seta (alist key value)
   (cond ((null alist)
