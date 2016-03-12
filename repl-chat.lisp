@@ -18,11 +18,11 @@
 
 (defvar *chat-data* nil)
 (defun chat-login (nickname)
-  (let ((stream (two-way-stream-output-stream *terminal-io*)))
+  (let ((stream *terminal-io*))
     (setf *chat-data* (seta *chat-data* nickname stream)) 
     t))
 (defun chat-logout ()
-  (let ((stream (two-way-stream-output-stream *terminal-io*)))
+  (let ((stream *terminal-io*))
     (setf *chat-data*
 	  (remove (rassoc stream *chat-data*)
 		  *chat-data*))
@@ -33,12 +33,12 @@
   (terpri))
 
 (defun msg-priv (nickname message)
-  (let* ((my-stream (two-way-stream-output-stream *terminal-io*))
+  (let* ((my-stream *terminal-io*)
 	 (my-nickname (car (rassoc my-stream *chat-data*)))
 	 (stream (cdr (assoc nickname *chat-data*))))
     (format stream ";;[~A]: ~A~%" my-nickname message)))
 (defun msg-pub (message)
-  (let* ((stream (two-way-stream-output-stream *terminal-io*))
+  (let* ((stream *terminal-io*)
 	 (my-nickname (car (rassoc stream *chat-data*))))
     (iterate (for cell in *chat-data*)
       (format (cdr cell) ";;<~A>: ~A~%" my-nickname message))))
