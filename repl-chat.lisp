@@ -7,6 +7,19 @@
 ;;;;
 ;;;; (kraklisp) 2016
 
+(defpackage #:repl-chat
+  (:use #:cl #:iterate)
+  (:export :chat-login
+	   :chat-logout
+	   :chat-whois
+	   :msg-priv
+	   :msg-pub
+	   :msg
+	   :public-chat-reader
+	   :private-chat-reader))
+
+(in-package #:repl-chat)
+
 (defun seta (alist key value)
   (cond ((null alist)
 	 (cons (cons key value) nil))
